@@ -28,17 +28,16 @@ const renderProducts = products =>
 
 const renderSingleProduct = product => {
   const fields = product.fields;
-  return `<a><div class="col-md-4 col-sm-6">
+  return `<div class="col-md-4 col-sm-6">
 		<div class="product-in-list card mb-4 box-shadow">
 		<div class="product-image card-img-top">
-		  ${renderImage(fields.image[0])}
+		  <a>${renderImage(fields.image[0])}</a>
 		</div>
 		<div class="product-details card-body">
 		  ${renderProductDetails(fields)}
 		</div>
 		</div>
-		</div>
-<a>`;
+		</div>`;
 };
 
 const renderProductDetails = fields =>
