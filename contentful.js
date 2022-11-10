@@ -28,7 +28,7 @@ const renderProducts = products =>
 
 const renderSingleProduct = product => {
   const fields = product.fields;
-  return `<a></a><div class="col-md-4 col-sm-6">
+  return `<a><div class="col-md-4 col-sm-6">
 		<div class="product-in-list card mb-4 box-shadow">
 		<div class="product-image card-img-top">
 		  ${renderImage(fields.image[0])}
