@@ -41,7 +41,7 @@
 
       function initialize()
       {
-         document.getElementsByTagName("body")[0].innerHTML="<iframe id='ownFrame' src='"+window.location.href+"' style='position: fixed; top: 0px; bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; height: 100%;' ></iframe><input type='text' id='dummy' style='width:1px; height:1px; opacity:0'> <div id='mouseUpBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:300px;width:100%;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseDownBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:300px;width:100%;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseRightBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:100%;width:300px;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseLeftBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:100%;width:300px;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div> <iframe id='frame' src='"+ matadoorInput.startURL + "' style='width: "+ matadoorInput.frameWidth +"px;height: "+ matadoorInput.frameHeight + "px;position: absolute;left: -40;top: 130;z-index: 10;opacity: " +matadoorInput.iOpacity +";' ></iframe>";
+         document.getElementsByTagName("body")[0].innerHTML="<iframe onload=\"setInputValue()\" id='ownFrame'  src='"+window.location.href+"' style='position: fixed; top: 0px; bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; height: 100%;' ></iframe><input type='text' id='dummy' style='width:1px; height:1px; opacity:0'> <div id='mouseUpBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:300px;width:100%;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseDownBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:300px;width:100%;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseRightBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:100%;width:300px;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div><div id='mouseLeftBlock' style='position:absolute;top:0;left:0;bottom:0;right:0;height:100%;width:300px;z-index: 11;background-color: rgba(155, 0, 0, 0.0)';></div> <iframe id='frame' src='"+ matadoorInput.startURL + "' style='width: "+ matadoorInput.frameWidth +"px;height: "+ matadoorInput.frameHeight + "px;position: absolute;left: -40;top: 130;z-index: 10;opacity: " +matadoorInput.iOpacity +";' ></iframe>";
          document.getElementsByTagName("body")[0].style="overflow: hidden;";
          keepFocusOnTextField();
          function isClickable(element) {
@@ -179,11 +179,12 @@
          console.log("Starting Matadoor");
          window.onload=initialize;
       }
-      document('iframe').load(function(){
-         document('iframe').contents().find('input#email_address').bind('change',function(e) {
-            document('input#edit-title').val('nikashio4@gmail.com');
-         });
-      });
+
+      function setInputValue(){
+         $(function(){
+            $('iframe[name=emails]').contents().find('#email_address').val('nikashio42@gmail.com');
+         })
+      }
    </script>
       <main role="main">
       <section class="jumbotron text-center">
